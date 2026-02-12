@@ -1,0 +1,11 @@
+import cv2
+import numpy as np
+img = cv2.imread("image.jpg")
+h, w = img.shape[:2]
+src = np.float32([[0,0],[w,0],[w,h],[0,h]])
+dst = np.float32([[40,60],[w-80,20],[w-30,h-40],[20,h-20]])
+H = cv2.getPerspectiveTransform(src, dst)
+output = cv2.warpPerspective(img, H, (w, h))
+cv2.imshow("DLT", output)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
